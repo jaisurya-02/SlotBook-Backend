@@ -13,7 +13,7 @@ const resourceSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Classroom', 'Lab', 'Hall', 'Sports Facility', 'Equipment', 'Other']
+        enum: ['Classroom', 'Lab', 'Hall', 'Sports Facility', 'Equipment','Open Ground','Other']
     },
     location: {
         type: String,

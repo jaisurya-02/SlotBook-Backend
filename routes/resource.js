@@ -9,7 +9,7 @@ const {
     getResourcesByCategory,
     getAvailableResources
 } = require('../controller/resourceController');
-const { verifyToken } = require('../middleware/authMiddleware');
+const { auth, isAdmin } = require('../middleware/authMiddleware');
 
 // Public routes
 router.get('/', getAllResources);
@@ -17,9 +17,9 @@ router.get('/available', getAvailableResources);
 router.get('/category/:category', getResourcesByCategory);
 router.get('/:id', getResourceById);
 
-// Protected routes (require authentication)
-router.post('/', verifyToken, createResource);
-router.put('/:id', verifyToken, updateResource);
-router.delete('/:id', verifyToken, deleteResource);
+// Admin-only routes
+router.post('/', auth, isAdmin, createResource);
+router.put('/:id', auth, isAdmin, updateResource);
+router.delete('/:id', auth, isAdmin, deleteResource);
 
 module.exports = router;
