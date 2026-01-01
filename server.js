@@ -4,6 +4,7 @@ const app=express();
 app.use(express.json());
 const authRouter=require('./routes/auth');
 const resourceRouter=require('./routes/resource');
+const dashboardRouter=require('./routes/dashboard');
 const mongoose=require('mongoose');
 const User=require('./models/User');
 const cors = require('cors');
@@ -18,6 +19,7 @@ app.use((req,res,next)=>{
 });
 app.use('/auth',authRouter);
 app.use('/resources',resourceRouter);
+app.use('/dashboard',dashboardRouter);
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is running http://localhost:${process.env.PORT}`);
